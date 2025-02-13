@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <header
       data-testid='header'
-      className='w-full flex items-center justify-between py-6 px-8 max-h-fit bg-white shadow-md text-slate-500'
+      className='w-full flex items-center justify-between py-6 px-8 max-h-fit bg-white shadow-sm text-slate-500'
     >
       <BreadCrumbs />
       <nav>

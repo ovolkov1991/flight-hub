@@ -95,3 +95,27 @@
     animation: shake 0.8s ease-in-out;
   }
 }
+
+.label {
+  @apply block mb-1 text-slate-500;
+}
+
+.input {
+  @apply block w-full p-2 pl-4 rounded-md shadow-sm border border-gray-300  text-gray-500;
+}
+
+.input-error {
+  @apply text-red-500  text-sm mt-1;
+}
+
+.input-border {
+  @apply border-red-500;
+}
+
+.text-area {
+  @apply block w-full p-2 pl-4 rounded-md shadow-sm border border-gray-300  text-gray-500;
+}
+
+.btn {
+  @apply text-white py-2 px-4 shadow-sm rounded-sm hover:shadow-md;
+}
