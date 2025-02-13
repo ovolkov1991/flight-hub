@@ -1,11 +1,45 @@
 @import 'tailwindcss';
 
+@layer utilities {
+  @keyframes shake-angle {
+    10%,
+    90% {
+      transform: rotate(-2deg);
+    }
+    20%,
+    80% {
+      transform: rotate(4deg);
+    }
+    30%,
+    50%,
+    70% {
+      transform: rotate(-6deg);
+    }
+    40%,
+    60% {
+      transform: rotate(8deg);
+    }
+  }
+
+  body {
+    min-width: 850px;
+  }
+
+  .shake-angle {
+    animation: shake-angle 0.8s ease-in-out;
+  }
+
+  .hover-shake-angle:hover {
+    animation: shake-angle 0.8s ease-in-out;
+  }
+}
+
 :root {
   --primary-color: #000e4e;
   --secondary-color: #00b7f1;
 }
 
-.bg-sidebar {
+.bg-primary {
   background-color: var(--primary-color);
 }
 
@@ -15,6 +49,44 @@
   border-width: 2px;
 }
 
-.text-sidebar {
+.text-color-primary {
+  color: var(--primary-color);
+}
+
+.text-color-secondary {
   color: var(--secondary-color);
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color);
+}
+
+@layer utilities {
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+  .shake {
+    animation: shake 0.8s ease-in-out;
+  }
+
+  .hover-shake:hover {
+    animation: shake 0.8s ease-in-out;
+  }
 }
