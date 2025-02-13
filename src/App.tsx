@@ -2,12 +2,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import MainLayout from './layouts/MainLayout';
 import Overview from './pages/Overview';
-import RealtimeMap from './pages/Map';
-import FlightAuthorizations from './pages/FlightAuthorizations';
-import Drones from './pages/Drones';
 import Pilots from './pages/Pilots';
-import FlightLog from './pages/FlightLog';
 import NotFound from './pages/NotFound';
+import CreateNewPilot from './pages/CreateNewPilot';
+import UnderConstruction from './pages/UnderConstruction';
 
 function App() {
   return (
@@ -25,7 +23,7 @@ function App() {
           path='/map'
           element={
             <MainLayout>
-              <RealtimeMap />
+              <UnderConstruction />
             </MainLayout>
           }
         />
@@ -33,7 +31,7 @@ function App() {
           path='/flight-authorizations'
           element={
             <MainLayout>
-              <FlightAuthorizations />
+              <UnderConstruction />
             </MainLayout>
           }
         />
@@ -41,7 +39,7 @@ function App() {
           path='/drones'
           element={
             <MainLayout>
-              <Drones />
+              <UnderConstruction />
             </MainLayout>
           }
         />
@@ -54,10 +52,34 @@ function App() {
           }
         />
         <Route
+          path='/pilots/create'
+          element={
+            <MainLayout>
+              <CreateNewPilot />
+            </MainLayout>
+          }
+        />
+        <Route
           path='/flight-log'
           element={
             <MainLayout>
-              <FlightLog />
+              <UnderConstruction />
+            </MainLayout>
+          }
+        />
+        <Route
+          path='/organization'
+          element={
+            <MainLayout>
+              <UnderConstruction />
+            </MainLayout>
+          }
+        />
+        <Route
+          path='/notifications'
+          element={
+            <MainLayout>
+              <UnderConstruction />
             </MainLayout>
           }
         />
