@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+:root {
+  --primary-color: #000e4e;
+  --secondary-color: #00b7f1;
+}
+
+.bg-sidebar {
+  background-color: var(--primary-color);
+}
+
+.border-organization {
+  border-color: var(--secondary-color);
+  border-radius: 10px;
+  border-width: 2px;
+}
+
+.text-sidebar {
+  color: var(--secondary-color);
+}
