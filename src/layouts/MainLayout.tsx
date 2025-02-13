@@ -1,3 +1,6 @@
+import Sidebar from '../components/Sidebar';
+import sidebarItems from '../data/sidebarItems';
+
 type Props = {
   children: React.ReactNode;
 };
@@ -19,6 +22,7 @@ function Header() {
 function Layout({ children }: Props) {
   return (
     <div className='flex bg-red-200 '>
+      <Sidebar items={sidebarItems} />
       <div>
         <Header />
         {children}
