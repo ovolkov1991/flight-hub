@@ -37,6 +37,7 @@
 :root {
   --primary-color: #000e4e;
   --secondary-color: #00b7f1;
+  --secondary-color-shade: #00c8ff;
 }
 
 .bg-primary {
@@ -59,6 +60,10 @@
 
 .bg-secondary {
   background-color: var(--secondary-color);
+}
+
+.bg-secondary:hover {
+  background-color: var(--secondary-color-shade);
 }
 
 @layer utilities {

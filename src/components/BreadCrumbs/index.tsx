@@ -11,7 +11,9 @@ const BreadCrumbs = () => {
         <li>
           <Link
             to='/'
-            className='hover:text-slate-700'
+            className={
+              pathList.length ? 'hover:text-slate-700' : 'cursor-default'
+            }
             data-testid='breadcrumbs-item'
           >
             Dashboard
@@ -25,10 +27,18 @@ const BreadCrumbs = () => {
           return (
             <li
               key={link}
-              className='hover:text-slate-700'
+              className={isLast ? '' : 'hover:text-slate-700'}
               data-testid='breadcrumbs-item'
             >
-              &gt; <Link to={isLast ? '#' : routeTo}>{capitalize(link)}</Link>
+              &gt;
+              <Link
+                to={isLast ? '#' : routeTo}
+                className={`hover: ${
+                  isLast ? 'cursor-default' : 'cursor-pointer'
+                }`}
+              >
+                {capitalize(link)}
+              </Link>
             </li>
           );
         })}
