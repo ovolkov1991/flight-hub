@@ -1,27 +1,7 @@
 function Overview() {
   return (
-    <div>
-      <h1>This an intro screen with some info</h1>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
-      <p>Many info</p>
+    <div className='w-full bg-amber-500'>
+      <h2>This an intro screen with some info</h2>
     </div>
   );
 }
