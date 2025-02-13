@@ -25,19 +25,17 @@ const BreadCrumbs = () => {
           const routeTo = `/${pathList.slice(0, index + 1).join('/')}`;
 
           return (
-            <li
-              key={link}
-              className={isLast ? '' : 'hover:text-slate-700'}
-              data-testid='breadcrumbs-item'
-            >
+            <li key={link} data-testid='breadcrumbs-item'>
               &gt;
               <Link
                 to={isLast ? '#' : routeTo}
-                className={`hover: ${
-                  isLast ? 'cursor-default' : 'cursor-pointer'
-                }`}
+                className={
+                  isLast
+                    ? 'hover:cursor-default'
+                    : 'hover:cursor-pointer hover:text-slate-700'
+                }
               >
-                {capitalize(link)}
+                {` ${capitalize(link)}`}
               </Link>
             </li>
           );
