@@ -9,6 +9,16 @@ const getPilots = (): Promise<Pilot[]> =>
     }, 300);
   });
 
+const addNewPilot = (pilot: Pilot) => {
+  new Promise((resolve) => {
+    setTimeout(() => {
+      pilots.push(pilot);
+      resolve(pilot);
+    });
+  });
+};
+
 export default {
   get: getPilots,
+  add: addNewPilot,
 };

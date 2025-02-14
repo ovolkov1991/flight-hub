@@ -8,7 +8,7 @@ type SidebarProps = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ items }) => (
-  <aside className='bg-primary px-6 py-4 min-w-fit'>
+  <aside className='bg-primary px-6 py-4 min-w-fit min-h-screen'>
     <CompanyBrand />
 
     <Organization />
