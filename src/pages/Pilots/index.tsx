@@ -1,7 +1,24 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { RootState, AppDispatch } from '../../store';
+import { savePilotsList } from '../../store/slices/pilotSlice';
+import * as Api from '../../api';
+
 const Pilots = () => {
-  // TODO: add some logic to retrieve table data from RTK with pagination
+  const dispatch = useDispatch<AppDispatch>();
+  const storedPilots = useSelector((state: RootState) => state.pilots.list);
+
+  const getAllPilots = async () => {
+    const pilots = await Api.pilotAPI.get();
+    dispatch(savePilotsList(pilots));
+  };
+
+  useEffect(() => {
+    getAllPilots();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className='py-8 px-12'>
@@ -10,6 +27,12 @@ const Pilots = () => {
         <Link to='/pilots/create' className='btn bg-secondary'>
           + Create
         </Link>
+      </div>
+
+      <div className='mt-8'>
+        {storedPilots.map((pilot) => {
+          return <p>{pilot.name}</p>;
+        })}
       </div>
     </div>
   );

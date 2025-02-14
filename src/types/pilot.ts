@@ -13,5 +13,5 @@ export interface Pilot {
 }
 
 export interface PilotState {
-  pilots: Pilot[];
+  list: Pilot[];
 }

@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Pilot, PilotState } from '../../types/pilot';
 
 const initialState: PilotState = {
-  pilots: [],
+  list: [],
 };
 
 const pilotSlice = createSlice({
@@ -11,15 +11,16 @@ const pilotSlice = createSlice({
   initialState,
   reducers: {
     addPilot: (state, action: PayloadAction<Pilot>) => {
-      state.pilots.push(action.payload);
+      state.list.push(action.payload);
     },
     deletePilot: (state, action: PayloadAction<string>) => {
-      state.pilots = state.pilots.filter(
-        (pilot) => pilot.id !== action.payload
-      );
+      state.list = state.list.filter((pilot) => pilot.id !== action.payload);
+    },
+    savePilotsList: (state, action: PayloadAction<Pilot[]>) => {
+      state.list = action.payload;
     },
   },
 });
 
-export const { addPilot, deletePilot } = pilotSlice.actions;
+export const { savePilotsList, addPilot, deletePilot } = pilotSlice.actions;
 export default pilotSlice.reducer;
