@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const pilotValidationSchema = yup.object().shape({
-  pilotName: yup
+  name: yup
     .string()
     .required('Pilot Name is required')
     .min(5, 'Pilot Name should be at least 5 characters'),
@@ -13,12 +13,12 @@ const pilotValidationSchema = yup.object().shape({
       'Invalid phone format'
     ),
   email: yup.string().required('Email is required').email('Invalid email'),
-  street: yup.string().required('Street Address is required'),
-  zipCode: yup
+  street_address: yup.string().required('Street Address is required'),
+  zip_code: yup
     .string()
     .required('Zip Code is required')
     .matches(/^\w{3,}$/, 'Invalid Zip Code'),
-  operatorNumber: yup.string().required('Operator Number is required'),
+  operator_number: yup.string().required('Operator Number is required'),
   description: yup
     .string()
     .required('Description is required')

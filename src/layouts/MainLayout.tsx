@@ -7,8 +7,7 @@ import { saveOrganization } from '../store/slices/organizationSlice';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import sidebarItems from '../data/sidebarItems';
-import * as Api from '../api';
-import organization from '../data/organization';
+import { organizationAPI } from '../api';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -21,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 
   const getAllPilots = async () => {
-    const organization = await Api.organizationAPI.get();
+    const organization = await organizationAPI.get();
     dispatch(saveOrganization(organization));
   };
 
@@ -40,7 +39,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Sidebar items={sidebarItems} />
       <div className='flex-col w-full'>
         <Header
-          organizationName={organization.name}
+          organizationName={storedOrganization.name}
           notifications={notifications}
         />
         {children}
