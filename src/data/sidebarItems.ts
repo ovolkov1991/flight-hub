@@ -1,6 +1,6 @@
 import {
   faHouse,
-  faLocationDot,
+  faMap,
   faUsersGear,
   faPlaceOfWorship,
   faPlaneCircleCheck,
@@ -10,7 +10,7 @@ import {
 export default {
   Dashboards: [
     { name: 'Overview', path: '/', icon: faHouse },
-    { name: 'Realtime Map', path: '/map', icon: faLocationDot },
+    { name: 'Realtime Map', path: '/map', icon: faMap },
   ],
   General: [
     {

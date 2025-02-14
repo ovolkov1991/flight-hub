@@ -1,86 +1,85 @@
 import { Link } from 'react-router-dom';
-import { Box, TextInput, TextArea, Button } from '../../components/ui';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { Box, TextInput, TextArea } from '../../components/ui';
+import pilotValidationSchema from '../../validation/pilotValidationSchema';
 
 const CreateNewPilot = () => {
-  // TODO: add some error checks and save action to RTK
-  // use formik or react-form ?
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(pilotValidationSchema),
+  });
+
+  console.log('SHIT errors', errors);
+
+  const onSubmit = (data: any) => {
+    // TODO: Send to API or RTK store
+  };
 
   return (
     <div className='py-8 px-12'>
       <h1 className='text-2xl text-slate-500 font-semibold'>Create Pilot</h1>
       <div className='mt-12 w-2/3 mx-auto'>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Box header='Pilot Information'>
             <TextInput
               required
               labelText='Pilot Name'
-              name='pilot-name'
+              {...register('pilotName')}
               placeholder='John Doe'
-              errorMessage=''
-              value=''
-              onChange={() => {}}
+              errorMessage={errors.pilotName?.message ?? ''}
             />
             <TextInput
               required
               labelText='Phone'
-              name='phone'
-              type='phone'
+              {...register('phone')}
               placeholder='941-288-57'
-              errorMessage=''
-              value=''
-              onChange={() => {}}
+              errorMessage={errors.phone?.message ?? ''}
             />
             <TextInput
               required
               labelText='Email'
-              name='email'
-              type='email'
+              {...register('email')}
               placeholder='john.doe@gmail.com'
-              errorMessage=''
-              value=''
-              onChange={() => {}}
+              errorMessage={errors.email?.message ?? ''}
             />
             <TextInput
               required
               labelText='Street Address'
-              name='street'
+              {...register('street')}
               placeholder='221B Baker Street, London'
-              errorMessage=''
-              value=''
-              onChange={() => {}}
+              errorMessage={errors.street?.message ?? ''}
             />
             <TextInput
               required
               labelText='Zip Code'
-              name='zipCode'
+              {...register('zipCode')}
               placeholder='W1A 1AA'
-              errorMessage=''
-              value=''
-              onChange={() => {}}
+              errorMessage={errors.zipCode?.message ?? ''}
             />
             <TextInput
               required
               labelText='Operator Number'
-              name='operator-number'
+              {...register('operatorNumber')}
               placeholder='UPNOR123456'
-              errorMessage=''
-              value=''
-              onChange={() => {}}
+              errorMessage={errors.operatorNumber?.message ?? ''}
             />
             <TextArea
               required
-              name='description'
               labelText='Description'
+              {...register('description')}
               placeholder='Experienced drone operator, licensed for commercial flights.'
-              errorMessage=''
-              value=''
-              onChange={() => {}}
+              errorMessage={errors.description?.message ?? ''}
             />
 
             <div className='mt-6 mb-2 flex items-center justify-evenly gap-4'>
               <button
+                type='submit'
                 className='btn bg-secondary w-1/2 text-l font-semibold hover:cursor-pointer'
-                onClick={() => {}}
               >
                 Invite
               </button>
