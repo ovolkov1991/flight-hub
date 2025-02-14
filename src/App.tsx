@@ -7,93 +7,91 @@ import NotFound from './pages/NotFound';
 import CreateNewPilot from './pages/CreateNewPilot';
 import UnderConstruction from './pages/UnderConstruction';
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <MainLayout>
-              <Overview />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/map'
-          element={
-            <MainLayout>
-              <UnderConstruction />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/flight-authorizations'
-          element={
-            <MainLayout>
-              <UnderConstruction />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/drones'
-          element={
-            <MainLayout>
-              <UnderConstruction />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/pilots'
-          element={
-            <MainLayout>
-              <Pilots />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/pilots/create'
-          element={
-            <MainLayout>
-              <CreateNewPilot />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/flight-log'
-          element={
-            <MainLayout>
-              <UnderConstruction />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/organization'
-          element={
-            <MainLayout>
-              <UnderConstruction />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='/notifications'
-          element={
-            <MainLayout>
-              <UnderConstruction />
-            </MainLayout>
-          }
-        />
-        <Route
-          path='*'
-          element={
-            <MainLayout>
-              <NotFound />
-            </MainLayout>
-          }
-        />
-      </Routes>
-    </Router>
-  );
-}
+const App = () => (
+  <Router>
+    <Routes>
+      <Route
+        path='/'
+        element={
+          <MainLayout>
+            <Overview />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/map'
+        element={
+          <MainLayout>
+            <UnderConstruction />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/flight-authorizations'
+        element={
+          <MainLayout>
+            <UnderConstruction />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/drones'
+        element={
+          <MainLayout>
+            <UnderConstruction />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/pilots'
+        element={
+          <MainLayout>
+            <Pilots />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/pilots/create'
+        element={
+          <MainLayout>
+            <CreateNewPilot />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/flight-log'
+        element={
+          <MainLayout>
+            <UnderConstruction />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/organization'
+        element={
+          <MainLayout>
+            <UnderConstruction />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='/notifications'
+        element={
+          <MainLayout>
+            <UnderConstruction />
+          </MainLayout>
+        }
+      />
+      <Route
+        path='*'
+        element={
+          <MainLayout>
+            <NotFound />
+          </MainLayout>
+        }
+      />
+    </Routes>
+  </Router>
+);
 
 export default App;

@@ -7,6 +7,7 @@ interface Notification {
 }
 
 export interface OrganizationState {
+  id: string;
   rating: Rating | null;
   name: string;
   notifications: Notification[];

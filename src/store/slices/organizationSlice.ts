@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { OrganizationState } from '../../types/organization';
 
 const initialState: OrganizationState = {
+  id: '',
   rating: null,
   name: '',
   notifications: [],
@@ -18,8 +19,17 @@ const organizationSlice = createSlice({
         notification.read_at = new Date().toISOString();
       }
     },
+    saveOrganization: (state, action: PayloadAction<OrganizationState>) => {
+      return {
+        ...state,
+        name: action.payload.name,
+        rating: action.payload.rating,
+        notifications: action.payload.notifications,
+      };
+    },
   },
 });
 
-export const { markNotificationAsRead } = organizationSlice.actions;
+export const { saveOrganization, markNotificationAsRead } =
+  organizationSlice.actions;
 export default organizationSlice.reducer;

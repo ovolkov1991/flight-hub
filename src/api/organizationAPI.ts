@@ -1,17 +1,12 @@
-import fs from 'fs';
-import path from 'path';
+import { OrganizationState } from '../types/organization';
 
-const organizationFilePath = path.join(__dirname, '../data/organization.json');
+import organization from '../data/organization';
 
-const getOrganization = () =>
-  new Promise((resolve, reject) => {
-    fs.readFile(organizationFilePath, 'utf-8', (error, data) => {
-      if (error) {
-        reject('Error loading organization data');
-      } else {
-        resolve(JSON.parse(data));
-      }
-    });
+const getOrganization = (): Promise<OrganizationState> =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(organization);
+    }, 300);
   });
 
 export default {

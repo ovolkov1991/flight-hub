@@ -96,6 +96,11 @@
   }
 }
 
+.hero {
+  background-image: url('../../public/drone-flight.jpg');
+  background-repeat: no-repeat;
+}
+
 .label {
   @apply block mb-1 text-slate-500;
 }
