@@ -14,8 +14,6 @@ const CreateNewPilot = () => {
     resolver: yupResolver(pilotValidationSchema),
   });
 
-  console.log('SHIT errors', errors);
-
   const onSubmit = (data: any) => {
     // TODO: Send to API or RTK store
   };
