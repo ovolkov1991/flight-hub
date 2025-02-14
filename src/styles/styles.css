@@ -116,11 +116,11 @@
 }
 
 .input-error {
-  @apply text-red-500 text-sm mt-1;
+  @apply text-red-400 text-sm mt-1;
 }
 
 .input-border {
-  @apply border-red-500;
+  @apply border-red-400;
 }
 
 .text-area {
@@ -130,4 +130,8 @@
 
 .btn {
   @apply text-white py-2 px-4 shadow-sm rounded-sm hover:shadow-md;
+}
+
+.notification-btn {
+  @apply cursor-pointer font-semibold hover:underline underline-offset-2;
 }

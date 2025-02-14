@@ -1,6 +1,7 @@
 export type Rating = 'S' | 'A' | 'B' | 'C' | 'D' | 'E';
 
-interface Notification {
+export interface Notification {
+  id: string;
   title: string;
   text: string;
   read_at: string | null;

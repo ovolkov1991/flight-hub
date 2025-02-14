@@ -5,6 +5,7 @@ import Overview from './pages/Overview';
 import Pilots from './pages/Pilots';
 import NotFound from './pages/NotFound';
 import CreateNewPilot from './pages/CreateNewPilot';
+import Notifications from './pages/Notifications';
 import UnderConstruction from './pages/UnderConstruction';
 
 const App = () => (
@@ -78,7 +79,7 @@ const App = () => (
         path='/notifications'
         element={
           <MainLayout>
-            <UnderConstruction />
+            <Notifications />
           </MainLayout>
         }
       />

@@ -3,18 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import BreadCrumbs from '../BreadCrumbs';
+import { Notification } from '../../types/organization';
 
-// mimic RTK
-const useSelector = () => ({
-  rating: 'A',
-  name: 'DRONE DOCK',
-  notifications: [{ title: 'Some new notification' }],
-});
+type HeaderProps = {
+  organizationName: string;
+  notifications: Notification[];
+};
 
-const Header = () => {
-  // add some RTK to get authorized organization data
-  // like it's rating and name
-  const organization = useSelector();
+const Header: React.FC<HeaderProps> = ({ organizationName, notifications }) => {
+  const newNotifications = notifications.filter(
+    (notification) => !notification.read_at
+  );
 
   return (
     <header
@@ -26,11 +25,11 @@ const Header = () => {
         <ul className='flex gap-6'>
           <li>
             <Link to='/notifications' className='relative'>
-              {organization.notifications.length && (
+              {newNotifications.length ? (
                 <div className='flex items-center justify-center absolute z-10 text-white bg-secondary p-2 rounded-full text-sm -top-2.5 -right-2 size-3'>
-                  {organization.notifications.length}
+                  {newNotifications.length}
                 </div>
-              )}
+              ) : null}
               <FontAwesomeIcon
                 icon={faBell}
                 color='#000e4e'
@@ -42,7 +41,7 @@ const Header = () => {
           <li>
             <Link to='/organization' className='hover:text-slate-700'>
               <FontAwesomeIcon icon={faUser} color='#000e4e' fontSize={24} />
-              <span className='pl-2 font-semibold'>{organization.name}</span>
+              <span className='pl-2 font-semibold'>{organizationName}</span>
             </Link>
           </li>
         </ul>

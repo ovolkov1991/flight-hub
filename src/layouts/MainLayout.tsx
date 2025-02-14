@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState, AppDispatch } from '../store';
@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import sidebarItems from '../data/sidebarItems';
 import * as Api from '../api';
+import organization from '../data/organization';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -26,15 +27,22 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   useEffect(() => {
     getAllPilots();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log('storedOrganization', storedOrganization);
+  const notifications = useMemo(
+    () => storedOrganization.notifications,
+    [storedOrganization]
+  );
 
   return (
     <div className='flex'>
       <Sidebar items={sidebarItems} />
       <div className='flex-col w-full'>
-        <Header />
+        <Header
+          organizationName={organization.name}
+          notifications={notifications}
+        />
         {children}
       </div>
     </div>
