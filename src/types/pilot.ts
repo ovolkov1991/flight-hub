@@ -1,4 +1,4 @@
-type PilotStatus = 'In Flight' | 'Actual' | 'Deleted';
+export type PilotStatus = 'In Flight' | 'Actual' | 'Deleted';
 
 export interface Pilot {
   id: string;
