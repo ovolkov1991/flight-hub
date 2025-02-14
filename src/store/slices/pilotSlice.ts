@@ -10,8 +10,11 @@ const pilotSlice = createSlice({
   name: 'pilots',
   initialState,
   reducers: {
-    addPilot: (state, action: PayloadAction<Pilot>) => {
-      state.list.push(action.payload);
+    addNewPilot: (state, action: PayloadAction<Pilot>) => {
+      return {
+        ...state,
+        list: [...state.list, action.payload],
+      };
     },
     deletePilot: (state, action: PayloadAction<string>) => {
       state.list = state.list.filter((pilot) => pilot.id !== action.payload);
@@ -22,5 +25,5 @@ const pilotSlice = createSlice({
   },
 });
 
-export const { savePilotsList, addPilot, deletePilot } = pilotSlice.actions;
+export const { savePilotsList, addNewPilot, deletePilot } = pilotSlice.actions;
 export default pilotSlice.reducer;

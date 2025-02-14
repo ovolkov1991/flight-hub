@@ -1,11 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 
+import { AppDispatch } from '../../store';
+import { addNewPilot } from '../../store/slices/pilotSlice';
 import { Box, TextInput, TextArea } from '../../components/ui';
 import pilotValidationSchema from '../../validation/pilotValidationSchema';
+import { pilotAPI } from '../../api';
+import { Pilot } from '../../types/pilot';
 
 const CreateNewPilot = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
   const {
     register,
     handleSubmit,
@@ -14,8 +22,18 @@ const CreateNewPilot = () => {
     resolver: yupResolver(pilotValidationSchema),
   });
 
-  const onSubmit = (data: any) => {
-    // TODO: Send to API or RTK store
+  const onSubmit = async (data: unknown) => {
+    try {
+      const pilot = data as Pilot;
+      const newPilot = await pilotAPI.add(pilot);
+
+      dispatch(addNewPilot(newPilot));
+      navigate('/pilots');
+    } catch (error) {
+      // NOTE: here we can collect some failed data using Sentry or any other tool
+      // and notify user data failed to update
+      console.log(error);
+    }
   };
 
   return (
@@ -27,9 +45,9 @@ const CreateNewPilot = () => {
             <TextInput
               required
               labelText='Pilot Name'
-              {...register('pilotName')}
+              {...register('name')}
               placeholder='John Doe'
-              errorMessage={errors.pilotName?.message ?? ''}
+              errorMessage={errors.name?.message ?? ''}
             />
             <TextInput
               required
@@ -48,23 +66,23 @@ const CreateNewPilot = () => {
             <TextInput
               required
               labelText='Street Address'
-              {...register('street')}
+              {...register('street_address')}
               placeholder='221B Baker Street, London'
-              errorMessage={errors.street?.message ?? ''}
+              errorMessage={errors.street_address?.message ?? ''}
             />
             <TextInput
               required
               labelText='Zip Code'
-              {...register('zipCode')}
+              {...register('zip_code')}
               placeholder='W1A 1AA'
-              errorMessage={errors.zipCode?.message ?? ''}
+              errorMessage={errors.zip_code?.message ?? ''}
             />
             <TextInput
               required
               labelText='Operator Number'
-              {...register('operatorNumber')}
+              {...register('operator_number')}
               placeholder='UPNOR123456'
-              errorMessage={errors.operatorNumber?.message ?? ''}
+              errorMessage={errors.operator_number?.message ?? ''}
             />
             <TextArea
               required

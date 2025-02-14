@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 
 import { RootState, AppDispatch } from '../../store';
 import { savePilotsList } from '../../store/slices/pilotSlice';
-import * as Api from '../../api';
+import { pilotAPI } from '../../api';
 
 const Pilots = () => {
   const dispatch = useDispatch<AppDispatch>();
   const storedPilots = useSelector((state: RootState) => state.pilots.list);
 
   const getAllPilots = async () => {
-    const pilots = await Api.pilotAPI.get();
+    const pilots = await pilotAPI.get();
     dispatch(savePilotsList(pilots));
   };
 
@@ -31,7 +31,7 @@ const Pilots = () => {
 
       <div className='mt-8'>
         {storedPilots.map((pilot) => {
-          return <p>{pilot.name}</p>;
+          return <p key={pilot.id}>{pilot.name}</p>;
         })}
       </div>
     </div>
