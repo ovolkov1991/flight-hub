@@ -11,4 +11,9 @@ const getOrganization = (): Promise<OrganizationState> =>
 
 export default {
   get: getOrganization,
+  notification: {
+    // decided not to mock any functions no more
+    markAsRead: () => {},
+    delete: () => {},
+  },
 };

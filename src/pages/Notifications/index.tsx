@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+
 import { RootState, AppDispatch } from '../../store';
-import EmptyState from '../../components/ui/EmptyState';
 import {
   markNotificationAsRead,
   deleteNotification,
 } from '../../store/slices/organizationSlice';
+import { EmptyState, TextButton } from '../../components/ui';
+import { organizationAPI } from '../../api';
 
 const Notifications = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -12,8 +14,27 @@ const Notifications = () => {
     (state: RootState) => state.organization
   );
 
-  const markAsRead = (id: string) => dispatch(markNotificationAsRead(id));
-  const removeNotification = (id: string) => dispatch(deleteNotification(id));
+  const markAsRead = async (id: string) => {
+    try {
+      await organizationAPI.notification.markAsRead();
+      dispatch(markNotificationAsRead(id));
+    } catch (error) {
+      // NOTE: here we can collect some failed data using Sentry or any other tool
+      // and notify user data failed to update
+      console.log(error);
+    }
+  };
+
+  const removeNotification = async (id: string) => {
+    try {
+      await organizationAPI.notification.delete();
+      dispatch(deleteNotification(id));
+    } catch (error) {
+      // NOTE: here we can collect some failed data using Sentry or any other tool
+      // and notify user data failed to update
+      console.log(error);
+    }
+  };
 
   return (
     <div className='py-8 px-12 min-h-screen'>
@@ -42,22 +63,19 @@ const Notifications = () => {
                   </p>
                 </div>
 
-                {/* Actions */}
                 <div className='flex gap-4'>
                   {!isRead && (
-                    <button
-                      className='notification-btn text-color-secondary'
+                    <TextButton
+                      text='Mark as read'
+                      className='text-color-secondary'
                       onClick={() => markAsRead(notification.id)}
-                    >
-                      Mark as read
-                    </button>
+                    />
                   )}
-                  <button
-                    className='notification-btn text-red-400'
+                  <TextButton
+                    text='Delete'
+                    className='text-red-400'
                     onClick={() => removeNotification(notification.id)}
-                  >
-                    Delete
-                  </button>
+                  />
                 </div>
               </div>
             );
