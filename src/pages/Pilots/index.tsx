@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { MaterialReactTable } from 'material-react-table';
 
 import { RootState, AppDispatch } from '../../store';
 import { savePilotsList } from '../../store/slices/pilotSlice';
 import { pilotAPI } from '../../api';
 import { PilotStatus } from '../../types/pilot';
+import { columns } from './columns';
 
 type PilotsFilter = 'All' | PilotStatus;
 const filter: PilotsFilter[] = ['All', 'In Flight', 'Actual', 'Deleted'];
@@ -21,7 +23,6 @@ const Pilots = () => {
 
   useEffect(() => {
     getAllPilots();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filteredPilots =
@@ -29,6 +30,13 @@ const Pilots = () => {
       ? storedPilots
       : storedPilots.filter((pilot) => pilot.status === selectedFilter);
 
+  console.log('Pilots Filter', selectedFilter);
+  console.log('Pilots 1', storedPilots);
+  console.log(
+    'Pilots 2',
+    storedPilots.filter((pilot) => pilot.status === selectedFilter)
+  );
+  console.log('FILTERED PILOTS', filteredPilots);
   return (
     <div className='py-8 px-12'>
       <div className='flex items-center justify-between'>
@@ -42,7 +50,7 @@ const Pilots = () => {
         {filter.map((status: PilotsFilter) => (
           <button
             key={status}
-            className={`px-2 py-1 rounded-sm ${
+            className={`px-4 py-2 rounded-sm ${
               selectedFilter === status
                 ? 'bg-secondary text-white font-semibold'
                 : 'bg-gray-200 text-slate-700'
@@ -55,9 +63,27 @@ const Pilots = () => {
       </div>
 
       <div className='mt-8'>
-        {filteredPilots.map((pilot) => {
-          return <p key={pilot.id}>{pilot.name}</p>;
-        })}
+        <div className='mt-8'>
+          <MaterialReactTable
+            columns={columns}
+            data={filteredPilots}
+            enablePagination
+            initialState={{
+              pagination: {
+                pageIndex: 0,
+                pageSize: 5,
+              },
+            }}
+            muiTableHeadCellProps={{
+              sx: {
+                backgroundColor: 'lightgray',
+                color: '#000e4e',
+                fontWeight: 600,
+              },
+            }}
+            enableTopToolbar={false}
+          />
+        </div>
       </div>
     </div>
   );

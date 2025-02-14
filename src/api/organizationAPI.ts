@@ -5,7 +5,7 @@ import { OrganizationState } from '../types/organization';
 
 const organization: OrganizationState = {
   id: 'org001',
-  name: 'SkyTech Services',
+  name: 'SkyTech Drones',
   rating: 'B',
   notifications: [
     {

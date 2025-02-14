@@ -36,7 +36,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className='flex'>
-      <Sidebar items={sidebarItems} />
+      <Sidebar
+        items={sidebarItems}
+        organizationRating={storedOrganization.rating}
+        organizationName={storedOrganization.name}
+      />
       <div className='flex-col w-full'>
         <Header
           organizationName={storedOrganization.name}
