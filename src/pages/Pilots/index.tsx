@@ -29,14 +29,6 @@ const Pilots = () => {
     selectedFilter === 'All'
       ? storedPilots
       : storedPilots.filter((pilot) => pilot.status === selectedFilter);
-
-  console.log('Pilots Filter', selectedFilter);
-  console.log('Pilots 1', storedPilots);
-  console.log(
-    'Pilots 2',
-    storedPilots.filter((pilot) => pilot.status === selectedFilter)
-  );
-  console.log('FILTERED PILOTS', filteredPilots);
   return (
     <div className='py-8 px-12'>
       <div className='flex items-center justify-between'>
